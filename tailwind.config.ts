@@ -1,10 +1,11 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     fontFamily: {
@@ -29,6 +30,9 @@ const config: Config = {
       lg: '1.125rem',
       xl: '1.25rem',
       '2xl': '1.5rem',
+      'button-sm': ['0.875rem', '160%'],
+      'button-md': ['1rem', '160%'],
+      'button-lg': ['1.125rem', '160%'],
     },
     fontWeight: {
       regular: '400',
@@ -42,8 +46,13 @@ const config: Config = {
       tall: '180%',
     },
     colors: {
-			white: '#FFFFFF',
+      white: '#FFFFFF',
       black: '#000000',
+
+      gradient: {
+        green: '#7FD1CC',
+        purple: '#9694F5',
+      },
 
       green: {
         100: '#50B2C0',
@@ -67,7 +76,9 @@ const config: Config = {
         800: '#0E1116',
       },
 
-			'gradient-vertical': `linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)`,
+      danger: '#F75A68',
+
+      'gradient-vertical': `linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)`,
       'gradient-horizontal': `linear-gradient(90deg, #7FD1CC 0%, #9694F5 100%)`,
     },
     borderRadius: {
@@ -79,12 +90,12 @@ const config: Config = {
     },
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
   plugins: [],
-};
-export default config;
+}
+export default config

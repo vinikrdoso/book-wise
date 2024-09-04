@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
-import './globals.css'
 import SessionWrapper from '@/providers/SessionProvider'
+import QueryProvider from '@/providers/QueryClientProvider'
+import './globals.css'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -17,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <SessionWrapper>
-      <html lang="en">
-        <body className={nunito.className}>{children}</body>
-      </html>
+      <QueryProvider>
+        <html lang="en">
+          <body className={nunito.className}>{children}</body>
+        </html>
+      </QueryProvider>
     </SessionWrapper>
   )
 }
