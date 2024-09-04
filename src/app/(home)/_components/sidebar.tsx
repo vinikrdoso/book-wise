@@ -3,7 +3,7 @@
 import logo from '@/assets/logo.svg'
 import { cn } from '@/lib/utils'
 import { Binoculars, ChartLine, LogIn, LogOut } from 'lucide-react'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -11,7 +11,6 @@ import { usePathname } from 'next/navigation'
 export function Sidebar() {
   const pathname = usePathname()
   const { status } = useSession()
-  console.log('🚀 ~ Sidebar ~ status:', status)
 
   return (
     <aside
@@ -45,16 +44,21 @@ export function Sidebar() {
       </nav>
 
       <div className="">
-        {status === 'unauthenticated' ? (
+        {status === 'authenticated' ? (
           <div className="flex items-center gap-3 text-button-md text-gray-200">
             <span>avatar</span> User
-            <LogOut className="text-danger" size={20} />
+            <button onClick={() => signOut()}>
+              <LogOut className="text-danger" size={20} />
+            </button>
           </div>
         ) : (
-          <div className="flex items-center gap-3 text-button-md text-gray-200">
+          <Link
+            href="/login"
+            className="flex items-center gap-3 text-button-md text-gray-200"
+          >
             Explorar
             <LogIn className="text-green-100" size={20} />
-          </div>
+          </Link>
         )}
       </div>
     </aside>

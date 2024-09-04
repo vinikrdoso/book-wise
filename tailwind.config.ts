@@ -33,6 +33,10 @@ const config: Config = {
       'button-sm': ['0.875rem', '160%'],
       'button-md': ['1rem', '160%'],
       'button-lg': ['1.125rem', '160%'],
+      'title-xs': ['1rem', '140%'],
+      'title-sm': ['1.125rem', '140%'],
+      'title-md': ['1.25rem', '140%'],
+      'title-lg': ['1.5rem', '140%'],
     },
     fontWeight: {
       regular: '400',

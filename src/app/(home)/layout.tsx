@@ -1,6 +1,5 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
 import { Sidebar } from './_components/sidebar'
 
 interface HomeLayoutProps {
@@ -8,9 +7,6 @@ interface HomeLayoutProps {
 }
 
 export default function HomeLayout({ children }: HomeLayoutProps) {
-  const { data, status } = useSession()
-  console.log('🚀 ~ Home ~ session:', data, status)
-
   return (
     <main className="min-h-screen w-screen flex bg-gray-800">
       <div className="pl-5 py-5">
