@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 export default function Login() {
   const { data, status } = useSession()
   const router = useRouter()
-  console.log('🚀 ~ Login ~ session:', data, status)
+  // console.log('🚀 ~ Login ~ session:', data, status)
 
   return (
     <div className="bg-gray-800 h-screen min-w-screen flex">

@@ -1,16 +1,22 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
+// import { useSession } from 'next-auth/react'
 import { ChartLine, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { BookCard } from './_components/bookCard'
 
 import { RecentReadingCard } from './_components/recentReadingCard'
 import { RecentRatingCard } from './_components/recentRatingCard'
+import { useQuery } from '@tanstack/react-query'
+import { getPopularBooks } from '@/services/get-popular-books'
 
 export default function Home() {
-  const { data, status } = useSession()
-  console.log('🚀 ~ Home ~ session:', data, status)
+  // const { data, status } = useSession()
+
+  const { data: popularBooks } = useQuery({
+    queryKey: ['popular-books'],
+    queryFn: getPopularBooks,
+  })
 
   const book = {
     title: 'O Hobbit',
@@ -54,9 +60,9 @@ export default function Home() {
         </div>
 
         <div className="mt-4 w-[324px] flex flex-col gap-3">
-          <BookCard book={book} />
-          <BookCard book={book} />
-          <BookCard book={book} />
+          {popularBooks?.map((popularBook) => (
+            <BookCard key={popularBook.book.id} popularBook={popularBook} />
+          ))}
         </div>
       </div>
     </div>
