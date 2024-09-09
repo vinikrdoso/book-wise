@@ -7,7 +7,6 @@ interface BookCardProps {
       name: string
       cover_url: string
       author: string
-      rate: number
     }
     rate: number
   }
@@ -15,7 +14,7 @@ interface BookCardProps {
 
 export function BookCard({ popularBook }: BookCardProps) {
   const { book } = popularBook
-  console.log('🚀 ~ BookCard ~ book:', book)
+
   return (
     <div className="bg-gray-700 w-full p-5 rounded-md flex">
       <Image

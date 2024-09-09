@@ -1,17 +1,24 @@
 import { api } from '@/lib/axios'
 
-type GetPopularBooksResponse = {
-  book: {
-    id: string
-    name: string
-    cover_url: string
-    author: string
-    rate: number
-  }
+type GetRecentRatingsResponse = {
+  id: string
   rate: number
+  created_at: string
+  description: string
+  book: {
+    name: string
+    author: string
+    cover_url: string
+  }
+  user: {
+    name: string
+    avatar_url: string
+  }
 }[]
 
-export async function getPopularBooks() {
-  const res = await api.get<GetPopularBooksResponse>('/book/get-recent-ratings')
+export async function getRecentRatings() {
+  const res = await api.get<GetRecentRatingsResponse>(
+    '/book/get-recent-ratings',
+  )
   return res.data
 }

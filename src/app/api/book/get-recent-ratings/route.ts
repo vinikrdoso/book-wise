@@ -1,20 +1,31 @@
 import { NextResponse } from 'next/server'
 
 import prisma from '@/lib/prisma'
+import { subDays } from 'date-fns'
 
 export async function GET() {
+  const threeDaysAgo = subDays(new Date(), 3)
+
   const popularBooks = await prisma.rating.findMany({
     where: {
-      rate: {
-        gte: 5,
+      created_at: {
+        gte: threeDaysAgo,
       },
     },
-    take: 4,
+    take: 3,
     select: {
+      id: true,
+      description: true,
       rate: true,
+      created_at: true,
+      user: {
+        select: {
+          name: true,
+          avatar_url: true,
+        },
+      },
       book: {
         select: {
-          id: true,
           author: true,
           name: true,
           cover_url: true,

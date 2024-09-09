@@ -1,33 +1,51 @@
 import Image from 'next/image'
 import { StarRating } from './starRating'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 interface RecentRatingCardProps {
-  book: {
-    title: string
-    author: string
+  recentRating: {
+    id: string
     rate: number
     description: string
+    created_at: string
+    book: {
+      name: string
+      author: string
+      cover_url: string
+    }
+    user: {
+      name: string
+      avatar_url: string
+    }
   }
 }
 
-export function RecentRatingCard({ book }: RecentRatingCardProps) {
+export function RecentRatingCard({ recentRating }: RecentRatingCardProps) {
+  const { book } = recentRating
+
   return (
     <div className="bg-gray-700 w-full p-5 rounded-md flex flex-col gap-6">
       <div className="flex flex-1 justify-between items-start">
         <div className="flex gap-4">
           <Image
-            src="https://avatars.githubusercontent.com/u/8796724?v=4"
+            src={recentRating.user.avatar_url}
             width={40}
             height={40}
             alt="User"
             className="h-10 rounded-full border-2 border-gradient-green"
           />
           <div>
-            <p className="text-md text-gray-100">Michael Jackson</p>
-            <span className="text-sm text-gray-400">Hoje</span>
+            <p className="text-md text-gray-100">{recentRating.user.name}</p>
+            <span className="text-sm text-gray-400">
+              {formatDistanceToNow(recentRating.created_at, {
+                locale: ptBR,
+                addSuffix: true,
+              })}
+            </span>
           </div>
         </div>
-        <StarRating rating={book.rate} />
+        <StarRating rating={recentRating.rate} />
       </div>
 
       <div className="flex gap-5">
@@ -43,14 +61,14 @@ export function RecentRatingCard({ book }: RecentRatingCardProps) {
           <div className="flex flex-col justify-between mb-3">
             <div>
               <h4 className="text-title-xs text-gray-100 font-bold">
-                {book.title}
+                {book.name}
               </h4>
               <p className="text-sm text-gray-400">{book.author}</p>
             </div>
           </div>
 
           <span className="line-clamp-4 text-sm text-gray-300">
-            {book.description}
+            {recentRating.description}
           </span>
         </div>
       </div>

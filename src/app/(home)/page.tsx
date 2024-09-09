@@ -9,6 +9,7 @@ import { RecentReadingCard } from './_components/recentReadingCard'
 import { RecentRatingCard } from './_components/recentRatingCard'
 import { useQuery } from '@tanstack/react-query'
 import { getPopularBooks } from '@/services/get-popular-books'
+import { getRecentRatings } from '@/services/get-recent-ratings'
 
 export default function Home() {
   // const { data, status } = useSession()
@@ -16,6 +17,11 @@ export default function Home() {
   const { data: popularBooks } = useQuery({
     queryKey: ['popular-books'],
     queryFn: getPopularBooks,
+  })
+
+  const { data: recentRatings } = useQuery({
+    queryKey: ['recent-ratings'],
+    queryFn: getRecentRatings,
   })
 
   const book = {
@@ -40,9 +46,12 @@ export default function Home() {
           <div className="flex flex-col gap-4 mt-10">
             <h3 className="text-sm text-gray-100">Avaliações mais recentes</h3>
 
-            <RecentRatingCard book={book} />
-            <RecentRatingCard book={book} />
-            <RecentRatingCard book={book} />
+            {recentRatings?.map((recentRating) => (
+              <RecentRatingCard
+                key={recentRating.book.id}
+                recentRating={recentRating}
+              />
+            ))}
           </div>
         </div>
       </div>
