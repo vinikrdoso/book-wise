@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { StarRating } from './starRating'
+import { StarRating } from '@/components/starRating'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { Avatar } from './avatar'
+import { Avatar } from '@/components/avatar'
 
 interface RecentRatingCardProps {
   recentRating: {

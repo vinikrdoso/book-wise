@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google'
 import SessionWrapper from '@/providers/SessionProvider'
 import QueryProvider from '@/providers/QueryClientProvider'
 import './globals.css'
+import { Sidebar } from '@/components/sidebar'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -21,7 +22,12 @@ export default function RootLayout({
       <QueryProvider>
         <html lang="en">
           <body className={nunito.className} suppressHydrationWarning>
-            {children}
+            <main className="h-screen w-screen flex bg-gray-800">
+              <div className="pl-5 py-5">
+                <Sidebar />
+              </div>
+              <div className="flex-1 min-h-screen ">{children}</div>
+            </main>
           </body>
         </html>
       </QueryProvider>

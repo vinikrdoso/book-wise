@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { StarRating } from './starRating'
+import { StarRating } from '@/components/starRating'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 

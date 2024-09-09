@@ -40,7 +40,7 @@ export default function Home() {
           <h1 className="text-gray-100 text-title-lg">Início</h1>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4">
+        <div className="flex flex-1 flex-col gap-4 mt-10">
           <RecentReadingCard book={book} />
 
           <div className="flex flex-col gap-4 mt-10">
