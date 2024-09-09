@@ -1,6 +1,6 @@
 'use client'
 
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import loginBg from '@/assets/login-bg.png'
 import logo from '@/assets/logo.svg'
@@ -10,9 +10,7 @@ import rocketseatIcon from '@/assets/logos/rocketseat-icon.svg'
 import { useRouter } from 'next/navigation'
 
 export default function Login() {
-  const { data, status } = useSession()
   const router = useRouter()
-  // console.log('🚀 ~ Login ~ session:', data, status)
 
   return (
     <div className="bg-gray-800 h-screen min-w-screen flex">

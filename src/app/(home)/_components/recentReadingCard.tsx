@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react'
 
 interface RecentReadingCardProps {
   book: {
-    title: string
+    name: string
     author: string
     rate: number
     description: string
@@ -29,10 +29,11 @@ export function RecentReadingCard({ book }: RecentReadingCardProps) {
       <div className="bg-gray-600 w-full p-5 rounded-md flex gap-6">
         <Image
           src="/images/books/o-hobbit.png"
-          width={108}
-          height={152}
-          alt="O Hobbit"
-          className="rounded-[4px]"
+          width="0"
+          height="0"
+          alt={book.name}
+          sizes="100vw"
+          className="rounded-[4px] w-[108px] h-[152px]"
         />
 
         <div className="flex flex-col flex-1 gap-3">
@@ -44,7 +45,7 @@ export function RecentReadingCard({ book }: RecentReadingCardProps) {
           <div className="flex flex-col justify-between mb-3">
             <div>
               <h4 className="text-title-xs text-gray-100 font-bold">
-                {book.title}
+                {book.name}
               </h4>
               <p className="text-sm text-gray-400">{book.author}</p>
             </div>

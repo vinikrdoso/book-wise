@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { StarRating } from './starRating'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { Avatar } from './avatar'
 
 interface RecentRatingCardProps {
   recentRating: {
@@ -28,13 +29,7 @@ export function RecentRatingCard({ recentRating }: RecentRatingCardProps) {
     <div className="bg-gray-700 w-full p-5 rounded-md flex flex-col gap-6">
       <div className="flex flex-1 justify-between items-start">
         <div className="flex gap-4">
-          <Image
-            src={recentRating.user.avatar_url}
-            width={40}
-            height={40}
-            alt="User"
-            className="h-10 rounded-full border-2 border-gradient-green"
-          />
+          <Avatar user={recentRating.user} />
           <div>
             <p className="text-md text-gray-100">{recentRating.user.name}</p>
             <span className="text-sm text-gray-400">
@@ -50,11 +45,12 @@ export function RecentRatingCard({ recentRating }: RecentRatingCardProps) {
 
       <div className="flex gap-5">
         <Image
-          src="/images/books/o-hobbit.png"
-          width={108}
-          height={152}
-          alt="O Hobbit"
-          className="rounded-[4px]"
+          src={`/${book.cover_url}`}
+          width="0"
+          height="0"
+          alt={book.name}
+          sizes="100vw"
+          className="rounded-[4px] w-[108px] h-[152px]"
         />
 
         <div className="flex flex-col flex-1 gap-3">

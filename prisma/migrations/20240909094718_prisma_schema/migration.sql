@@ -2,6 +2,7 @@
 CREATE TABLE "users" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "avatar_url" TEXT,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -10,7 +11,6 @@ CREATE TABLE "users" (
 CREATE TABLE "books" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
-    "username" TEXT NOT NULL,
     "author" TEXT NOT NULL,
     "summary" TEXT NOT NULL,
     "cover_url" TEXT NOT NULL,
@@ -71,9 +71,6 @@ CREATE TABLE "sessions" (
     "expires" DATETIME NOT NULL,
     CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "books_username_key" ON "books"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_name_key" ON "categories"("name");

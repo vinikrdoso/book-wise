@@ -7,10 +7,14 @@ import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Avatar } from './avatar'
 
 export function Sidebar() {
   const pathname = usePathname()
-  const { status } = useSession()
+  const { status, data } = useSession()
+
+  const user = data?.user
+  const username = user?.name?.split(' ')[0] ?? ''
 
   return (
     <aside
@@ -43,10 +47,10 @@ export function Sidebar() {
         </Link>
       </nav>
 
-      <div className="">
+      <div>
         {status === 'authenticated' ? (
           <div className="flex items-center gap-3 text-button-md text-gray-200">
-            <span>avatar</span> User
+            <Avatar user={data?.user} /> {username}
             <button onClick={() => signOut()}>
               <LogOut className="text-danger" size={20} />
             </button>

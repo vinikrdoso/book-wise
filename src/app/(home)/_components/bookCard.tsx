@@ -19,10 +19,11 @@ export function BookCard({ popularBook }: BookCardProps) {
     <div className="bg-gray-700 w-full p-5 rounded-md flex">
       <Image
         src={`/${book.cover_url}`}
-        width={64}
-        height={94}
-        alt="O Hobbit"
-        className="rounded-[4px]"
+        width="0"
+        height="0"
+        alt={book.name}
+        sizes="100vw"
+        className="rounded-[4px] w-[64px] h-[94px]"
       />
 
       <div className="ml-5 flex flex-col justify-between">

@@ -20,7 +20,9 @@ export default function RootLayout({
     <SessionWrapper>
       <QueryProvider>
         <html lang="en">
-          <body className={nunito.className}>{children}</body>
+          <body className={nunito.className} suppressHydrationWarning>
+            {children}
+          </body>
         </html>
       </QueryProvider>
     </SessionWrapper>

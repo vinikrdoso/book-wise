@@ -25,7 +25,7 @@ export default function Home() {
   })
 
   const book = {
-    title: 'O Hobbit',
+    name: 'O Hobbit',
     author: 'J. R. R. Tolkien',
     rate: 2.5,
     description:
@@ -48,7 +48,7 @@ export default function Home() {
 
             {recentRatings?.map((recentRating) => (
               <RecentRatingCard
-                key={recentRating.book.id}
+                key={recentRating.id}
                 recentRating={recentRating}
               />
             ))}
