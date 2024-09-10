@@ -31,7 +31,7 @@ export default function Profile() {
 
   queryClient.prefetchQuery({
     queryKey: ['ratings-on-user'],
-    queryFn: async () => getRatingsOnUser(userId!),
+    queryFn: () => getRatingsOnUser(userId!),
   })
 
   const isOwnProfile = data?.user?.id === userId

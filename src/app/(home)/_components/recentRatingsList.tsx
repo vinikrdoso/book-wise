@@ -1,6 +1,6 @@
 'use client'
 
-import { getRecentRatings } from '@/server/actions/get-recent-ratings'
+import { getRecentRatings } from '@/server/actions/get-recent-ratings-action'
 import { useQuery } from '@tanstack/react-query'
 import { RecentRatingCard } from './recentRatingCard'
 

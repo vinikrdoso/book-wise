@@ -22,7 +22,6 @@ export async function getPopularBooks() {
       },
     },
   })
-  console.log('🚀 ~ getPopularBooks ~ popularBooks:', popularBooks)
 
   return popularBooks
 }
