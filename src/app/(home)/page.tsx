@@ -1,6 +1,6 @@
 'use client'
 
-// import { useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { ChartLine, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -17,7 +17,7 @@ import {
 import { RecentRatingsList } from './_components/recentRatingsList'
 
 export default function Home() {
-  // const { data, status } = useSession()
+  const { data } = useSession()
 
   const queryClient = new QueryClient()
 
@@ -31,14 +31,6 @@ export default function Home() {
     queryFn: getRecentRatings,
   })
 
-  const book = {
-    name: 'O Hobbit',
-    author: 'J. R. R. Tolkien',
-    rate: 2.5,
-    description:
-      'Nec tempor nunc in egestas. Euismod nisi eleifend at et in sagittis. Penatibus id vestibulum imperdiet  vestibulum imperdiet vestibulum imperdiet a at imperdiet lectu...',
-  }
-
   return (
     <div className="w-full h-full pt-[72px] px-[96px] flex gap-[64px] overflow-hidden">
       <div className="overflow-y-auto h-[100vh - 72px] mb-5">
@@ -47,10 +39,12 @@ export default function Home() {
           <h1 className="text-gray-100 text-title-lg">Início</h1>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 mt-10">
-          <RecentReadingCard book={book} />
+        <div className="flex flex-1 flex-col gap-10 mt-10">
+          {data?.user && <RecentReadingCard userId={data.user.id} />}
 
-          <RecentRatingsList />
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <RecentRatingsList />
+          </HydrationBoundary>
         </div>
       </div>
 
@@ -66,7 +60,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <HydrationBoundary state={dehydrate}>
+        <HydrationBoundary state={dehydrate(queryClient)}>
           <PopularBooksList />
         </HydrationBoundary>
       </div>

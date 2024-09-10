@@ -4,10 +4,10 @@ import emptyStar from '@/assets/stars/empty-star.svg'
 import halfStar from '@/assets/stars/half-star.svg'
 
 interface StarRatingProps {
-  rating: number
+  rating: number | undefined
 }
 
-export function StarRating({ rating }: StarRatingProps) {
+export function StarRating({ rating = 0 }: StarRatingProps) {
   const TOTAL_STARS = 5
 
   const renderStars = () => {

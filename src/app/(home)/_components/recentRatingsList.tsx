@@ -11,7 +11,7 @@ export function RecentRatingsList() {
   })
 
   return (
-    <div className="flex flex-col gap-4 mt-10">
+    <div className="flex flex-col gap-4">
       <h3 className="text-sm text-gray-100">Avaliações mais recentes</h3>
 
       {recentRatings?.map((recentRating) => (

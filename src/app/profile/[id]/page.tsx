@@ -55,14 +55,14 @@ export default function Profile() {
         )}
 
         <div className="flex flex-1 flex-col gap-6 mt-10 w-full">
-          <HydrationBoundary state={dehydrate}>
+          <HydrationBoundary state={dehydrate(queryClient)}>
             <ProfileRecentRatingList userId={userId} />
           </HydrationBoundary>
         </div>
       </div>
 
       <div>
-        <HydrationBoundary state={dehydrate}>
+        <HydrationBoundary state={dehydrate(queryClient)}>
           <ProfileInfos userId={userId} />
         </HydrationBoundary>
       </div>
