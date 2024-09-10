@@ -1,30 +1,40 @@
+import { cn } from '@/lib/utils'
 import { User } from 'lucide-react'
 import Image from 'next/image'
 
 interface AvatarProps {
   user:
     | {
-        avatar_url?: string | null
-        name?: string | null
-        email?: string | null
+        id?: string
+        created_at?: Date
+        name: string
+        avatar_url: string | null
       }
+    | null
     | undefined
+  size?: number
 }
 
-export function Avatar({ user }: AvatarProps) {
+export function Avatar({ user, size = 40 }: AvatarProps) {
+  const sizeClass = size === 40 ? 'h-10 w-10' : 'h-[72px] w-[72px]'
+
   return (
-    <div className="h-10 w-10 rounded-full border-2 border-gradient-green flex items-center justify-center">
+    <>
       {user?.avatar_url ? (
         <Image
+          className={cn(
+            'w-[72px] h-[72px] p-1 rounded-full ring-2 ring-gradient-green',
+            size && sizeClass,
+          )}
           src={user?.avatar_url}
-          width={40}
-          height={40}
-          alt={user?.name ?? 'Avatar'}
-          className="rounded-full  "
+          alt="Bordered avatar"
+          width="0"
+          height="0"
+          sizes="100vw"
         />
       ) : (
-        <User size={30} />
+        <User size={size - 10} />
       )}
-    </div>
+    </>
   )
 }

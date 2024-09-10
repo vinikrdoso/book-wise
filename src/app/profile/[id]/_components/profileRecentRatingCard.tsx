@@ -2,24 +2,22 @@ import Image from 'next/image'
 import { StarRating } from '@/components/starRating'
 
 interface ProfileRecentRatingCardProps {
-  rating: {
-    id: string
-    rate: number
-    description: string
-    created_at: string
-    book: {
-      name: string
-      author: string
-      cover_url: string
-    }
+  rate: number
+  description: string
+  book: {
+    name: string
+    author: string
+    cover_url: string
+    total_pages: number
+    categories: { category: { name: string } }[]
   }
 }
 
 export function ProfileRecentRatingCard({
-  rating,
+  rate,
+  description,
+  book,
 }: ProfileRecentRatingCardProps) {
-  const { book } = rating
-
   return (
     <div className="bg-gray-700 w-full h-auto p-5 rounded-md flex flex-col gap-6">
       <div className="flex flex-1 gap-6">
@@ -38,24 +36,13 @@ export function ProfileRecentRatingCard({
             </h4>
             <p className="text-sm text-gray-400">{book.author}</p>
           </div>
-          <StarRating rating={rating.rate} />
-        </div>
-        <div className="flex gap-4">
-          <div>
-            {/* <p className="text-md text-gray-100">{rating.user.name}</p> */}
-            {/* <span className="text-sm text-gray-400">
-              {formatDistanceToNow(rating.created_at, {
-                locale: ptBR,
-                addSuffix: true,
-              })}
-            </span> */}
-          </div>
+          <StarRating rating={rate} />
         </div>
       </div>
 
       <div className="flex gap-5">
         <div className="flex flex-col flex-1 gap-3">
-          <span className="text-sm text-gray-300">{rating.description}</span>
+          <span className="text-sm text-gray-300">{description}</span>
         </div>
       </div>
     </div>

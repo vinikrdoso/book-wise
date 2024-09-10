@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server'
+'use server'
 
 import prisma from '@/lib/prisma'
 
-export async function GET() {
+export async function getPopularBooks() {
   const popularBooks = await prisma.rating.findMany({
     where: {
       rate: {
@@ -22,6 +22,7 @@ export async function GET() {
       },
     },
   })
+  console.log('🚀 ~ getPopularBooks ~ popularBooks:', popularBooks)
 
-  return NextResponse.json(popularBooks)
+  return popularBooks
 }

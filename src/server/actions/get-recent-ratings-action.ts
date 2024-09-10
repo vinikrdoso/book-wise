@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server'
+'use server'
 
 import prisma from '@/lib/prisma'
 import { subDays } from 'date-fns'
 
-export async function GET() {
+export async function getRecentRatings() {
   const threeDaysAgo = subDays(new Date(), 3)
 
-  const popularBooks = await prisma.rating.findMany({
+  const recentRatings = await prisma.rating.findMany({
     where: {
       created_at: {
         gte: threeDaysAgo,
@@ -34,5 +34,5 @@ export async function GET() {
     },
   })
 
-  return NextResponse.json(popularBooks)
+  return recentRatings
 }

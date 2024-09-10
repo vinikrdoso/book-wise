@@ -9,7 +9,7 @@ interface RecentRatingCardProps {
     id: string
     rate: number
     description: string
-    created_at: string
+    created_at: Date
     book: {
       name: string
       author: string
@@ -17,7 +17,7 @@ interface RecentRatingCardProps {
     }
     user: {
       name: string
-      avatar_url: string
+      avatar_url: string | null
     }
   }
 }

@@ -3,23 +3,30 @@
 // import { useSession } from 'next-auth/react'
 import { ChartLine, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
-import { BookCard } from './_components/bookCard'
+
+import { getRecentRatings } from '@/server/actions/get-recent-ratings-action'
+import { getPopularBooks } from '@/server/actions/get-popular-books-action'
 
 import { RecentReadingCard } from './_components/recentReadingCard'
-import { RecentRatingCard } from './_components/recentRatingCard'
-import { useQuery } from '@tanstack/react-query'
-import { getPopularBooks } from '@/services/get-popular-books'
-import { getRecentRatings } from '@/services/get-recent-ratings'
+import { PopularBooksList } from './_components/popularBooksList'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query'
+import { RecentRatingsList } from './_components/recentRatingsList'
 
 export default function Home() {
   // const { data, status } = useSession()
 
-  const { data: popularBooks } = useQuery({
+  const queryClient = new QueryClient()
+
+  queryClient.prefetchQuery({
     queryKey: ['popular-books'],
     queryFn: getPopularBooks,
   })
 
-  const { data: recentRatings } = useQuery({
+  queryClient.prefetchQuery({
     queryKey: ['recent-ratings'],
     queryFn: getRecentRatings,
   })
@@ -43,16 +50,7 @@ export default function Home() {
         <div className="flex flex-1 flex-col gap-4 mt-10">
           <RecentReadingCard book={book} />
 
-          <div className="flex flex-col gap-4 mt-10">
-            <h3 className="text-sm text-gray-100">Avaliações mais recentes</h3>
-
-            {recentRatings?.map((recentRating) => (
-              <RecentRatingCard
-                key={recentRating.id}
-                recentRating={recentRating}
-              />
-            ))}
-          </div>
+          <RecentRatingsList />
         </div>
       </div>
 
@@ -68,11 +66,9 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-4 w-[324px] flex flex-col gap-3">
-          {popularBooks?.map((popularBook) => (
-            <BookCard key={popularBook.book.id} popularBook={popularBook} />
-          ))}
-        </div>
+        <HydrationBoundary state={dehydrate}>
+          <PopularBooksList />
+        </HydrationBoundary>
       </div>
     </div>
   )

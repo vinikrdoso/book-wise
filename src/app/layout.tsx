@@ -18,19 +18,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <SessionWrapper>
-      <QueryProvider>
-        <html lang="en">
-          <body className={nunito.className} suppressHydrationWarning>
+    <html lang="en">
+      <body className={nunito.className} suppressHydrationWarning>
+        <SessionWrapper>
+          <QueryProvider>
             <main className="h-screen w-screen flex bg-gray-800">
               <div className="pl-5 py-5">
                 <Sidebar />
               </div>
               <div className="flex-1 min-h-screen ">{children}</div>
             </main>
-          </body>
-        </html>
-      </QueryProvider>
-    </SessionWrapper>
+          </QueryProvider>
+        </SessionWrapper>
+      </body>
+    </html>
   )
 }

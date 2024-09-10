@@ -16,6 +16,8 @@ export function Sidebar() {
   const user = data?.user
   const username = user?.name?.split(' ')[0] ?? ''
 
+  if (pathname === '/login') return null
+
   return (
     <aside
       className="bg-gray-700 h-full w-[232px] px-[52px] pt-10 pb-6 rounded-[12px]
