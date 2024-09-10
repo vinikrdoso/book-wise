@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { getPopularBooks } from '@/server/actions/get-popular-books'
+import { getPopularBooks } from '@/server/actions/get-popular-books-action'
 import { BookCard } from './bookCard'
 
 export function PopularBooksList() {

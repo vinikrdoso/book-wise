@@ -33,7 +33,13 @@ export function Avatar({ user, size = 40 }: AvatarProps) {
           sizes="100vw"
         />
       ) : (
-        <User size={size - 10} />
+        <User
+          className={cn(
+            'w-[72px] h-[72px] p-1 rounded-full ring-2 ring-gradient-green text-gray-200',
+            size && sizeClass,
+          )}
+          size={size - 10}
+        />
       )}
     </>
   )

@@ -40,7 +40,6 @@ const nextAuthOptions = {
   ],
   callbacks: {
     async session({ session, user }: { session: Session; user: User }) {
-      console.log('🚀 ~ session ~ session, user:', session, user)
       return {
         ...session,
         user,
